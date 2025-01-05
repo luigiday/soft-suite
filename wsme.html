@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Application - Nom de l'App</title>
+    <title>Windows Start Menu Editor - LuigidaySofts</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -169,12 +169,13 @@
     function detectOS() {
         const platform = navigator.platform.toLowerCase();
         const btn = document.getElementById('download-btn');
-        if (platform.includes('win') || platform.includes('linux')) {
+        if (platform.includes('win')) {
             btn.classList.remove('disabled');
             btn.onclick = () => alert('Téléchargement en cours...');
         } else {
             btn.classList.add('disabled');
             btn.onclick = null;
+            btn.textContent = 'Disponible uniquement pour Windows';
         }
     }
     // Appel de la fonction après chargement de la page
