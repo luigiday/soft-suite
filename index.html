@@ -1,5 +1,134 @@
-<html>
-  <body>
-    <p>Building</p>
-  </body>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suite Logiciels</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        header {
+            background-color: #1f1f1f;
+            padding: 1.5em 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+            color: #4CAF50;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+        .app-card {
+            background-color: #1e1e1e;
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .app-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+        .app-icon {
+            flex-shrink: 0;
+            width: 64px;
+            height: 64px;
+            margin-right: 15px;
+            transition: transform 0.3s ease;
+        }
+        .app-card:hover .app-icon {
+            transform: scale(1.1);
+        }
+        .app-description {
+            flex: 1;
+        }
+        .app-description h2 {
+            margin: 0;
+            color: #4CAF50;
+        }
+        .app-description p {
+            margin: 10px 0;
+        }
+        .app-actions {
+            flex-shrink: 0;
+        }
+        .app-actions button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .app-actions button:hover {
+            background-color: #45a049;
+        }
+        @media (max-width: 768px) {
+            .app-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            .app-icon {
+                margin: 0 auto 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Suite Logiciels</h1>
+    <p>Une suite de logiciels pratiques pour vous faciliter la vie. Tous ces logiciels sont gratuits et open-source !</p>
+</header>
+
+<div class="container">
+    <!-- Exemple d'application -->
+    <div class="app-card">
+        <img src="https://via.placeholder.com/64" alt="Icône WSME" class="app-icon">
+        <div class="app-description">
+            <h2>Windows Start Menu Editor (WSME)</h2>
+            <p>Gérez les raccourcis dans votre menu démmarer Windows facilement avec une interface simple et des outils avancés</p>
+        </div>
+        <div class="app-actions">
+            <button onclick="window.location.href='wsme.html'">En savoir plus</button>
+        </div>
+    </div>
+
+    <div class="app-card">
+        <img src="https://via.placeholder.com/64" alt="Icône Application 2" class="app-icon">
+        <div class="app-description">
+            <h2>Gestionnaire MSIX (UWP)</h2>
+            <p>Gérez les paquets UWP installés sur votre système Windows (permet entre autre de supprimer le bloat)</p>
+        </div>
+        <div class="app-actions">
+            <button onclick="window.location.href='msix-mgr.html'">En savoir plus</button>
+        </div>
+    </div>
+
+    <div class="app-card">
+        <img src="https://via.placeholder.com/64" alt="Icône Application 3" class="app-icon">
+        <div class="app-description">
+            <h2>Application 3</h2>
+            <p>Optimisez vos flux de travail grâce à cette solution complète.</p>
+        </div>
+        <div class="app-actions">
+            <button onclick="window.location.href='app3.html'">En savoir plus</button>
+        </div>
+    </div>
+</div>
+
+</body>
 </html>
