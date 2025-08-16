@@ -1,169 +1,155 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LuigidaySofts</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #121212;
-            color: #e0e0e0;
-        }
-        header {
-            background-color: #1f1f1f;
-            padding: 1.5em 0;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2em;
-            color: #4CAF50;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 15px;
-        }
-        .app-card {
-            background-color: #1e1e1e;
-            margin: 15px 0;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            display: flex;
-            align-items: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .app-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-        }
-        .app-icon {
-            flex-shrink: 0;
-            width: 64px;
-            height: 64px;
-            margin-right: 15px;
-            transition: transform 0.3s ease;
-        }
-        .app-card:hover .app-icon {
-            transform: scale(1.1);
-        }
-        .app-description {
-            flex: 1;
-        }
-        .app-description h2 {
-            margin: 0;
-            color: #4CAF50;
-        }
-        .app-description p {
-            margin: 10px 0;
-        }
-        .app-actions {
-            flex-shrink: 0;
-        }
-        .app-actions button {
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .app-actions button:hover {
-            background-color: #45a049;
-        }
-        @media (max-width: 768px) {
-            .app-card {
-                flex-direction: column;
-                text-align: center;
-            }
-            .app-icon {
-                margin: 0 auto 15px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LuigidaySofts Suite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0e0f12;
+      --card:#14161a;
+      --muted:#a9b1bb;
+      --text:#e6eaf0;
+      --brand:#49d17c;
+      --brand-600:#2fb563;
+      --accent:#f4a93d;
+      --error:#ef5350;
+      --shadow: 0 12px 40px rgba(0,0,0,.45);
+      --radius: 16px;
+      --radius-lg: 22px;
+      --ring: 0 0 0 2px rgba(73,209,124,.3), 0 8px 30px rgba(73,209,124,.15);
+      --transition: 300ms cubic-bezier(.2,.7,.2,1);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, sans-serif;
+      color:var(--text);
+      background: var(--bg);
+      line-height:1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    header{
+      padding:56px 20px 36px;
+      text-align:center;
+    }
+    header h1{ color:var(--brand); margin:0; font-size:clamp(28px,4vw,42px) }
+    header p{ color:var(--muted); margin:8px 0 0; font-size:clamp(14px,2vw,18px) }
+
+    .container{ width:min(1100px,92%); margin:0 auto; }
+
+    .app-card{
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)), var(--card);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:var(--radius);
+      padding:22px;
+      margin:16px 0;
+      box-shadow: var(--shadow);
+      display:flex; gap:18px; align-items:center;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .app-card:hover{ transform:translateY(-3px); box-shadow:0 14px 28px rgba(0,0,0,.55); }
+
+    .app-icon{ flex-shrink:0; width:64px; height:64px; border-radius:12px; object-fit:cover; }
+
+    .app-description h2{ margin:0; color:var(--brand); font-size:1.4em }
+    .app-description p{ margin:8px 0 0; color:var(--muted) }
+
+    .app-actions{ margin-left:auto }
+    .btn{ cursor:pointer; border:none; border-radius:10px; padding:10px 16px; font-weight:600; transition: all var(--transition); }
+    .btn-primary{ background:linear-gradient(180deg, var(--brand), var(--brand-600)); color:#07140d; }
+    .btn-primary:hover{ transform:translateY(-1px); box-shadow:var(--ring) }
+
+    .tags{ display:flex; gap:6px; margin-top:6px; flex-wrap:wrap }
+    .tag{ font-size:.75em; padding:3px 8px; border-radius:999px; font-weight:600; letter-spacing:.2px; }
+    .tag.win{ background:#0078d4; color:#fff }
+    .tag.linux{ background:#ff9800; color:#fff }
+
+    @media(max-width:768px){ .app-card{ flex-direction:column; text-align:center } .app-actions{ margin-left:0; margin-top:12px } }
+  </style>
 </head>
 <body>
-
-<header>
+  <header>
     <h1>LuigidaySofts Suite</h1>
-    <p>Une suite de logiciels pratiques pour vous faciliter la vie. Tous ces logiciels sont gratuits et open-source !</p>
-</header>
+    <p>Suite de logiciels pratiques, gratuits et open‑source, pour Windows et Linux ✨</p>
+  </header>
 
-<script>
-    window.onload = function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('404') === 'true') {
-            const errorBanner = document.createElement('div');
-            errorBanner.style.backgroundColor = '#5f0909';
-            errorBanner.style.color = '#fff';
-            errorBanner.style.padding = '15px';
-            errorBanner.style.marginBottom = '20px';
-            errorBanner.style.borderRadius = '8px';
-            errorBanner.style.textAlign = 'left';
-            errorBanner.textContent = 'Erreur 404 : La page a laquelle vous tentiez d\'accéder n\'existe pas. Vous avez été redirigé vers la page d\'accueil.';
-            const container = document.querySelector('.container');
-            container.insertBefore(errorBanner, container.firstChild);
-
-            // Remove the '404' parameter from the URL
-            urlParams.delete('404');
-            const newUrl = window.location.pathname + '?' + urlParams.toString();
-            window.history.replaceState({}, document.title, newUrl);
-        }
-    };
-</script>
-<div class="container">
-
-    <!-- Exemple d'application -->
+  <main class="container">
     <div class="app-card">
-        <img src="https://smoothgressi.github.io/logo.png" alt="Icône WSME" class="app-icon">
-        <div class="app-description">
-            <h2>Smoothgressi</h2>
-            <p>Un logiciel de representation graphique (Regressi en mieux)</p>
-        </div>
-        <div class="app-actions">
-            <button onclick="window.location.href='smoothgressi.html'">En savoir plus</button>
-        </div>
+      <img src="https://smoothgressi.github.io/logo.png" alt="Icône Smoothgressi" class="app-icon">
+      <div class="app-description">
+        <h2>Smoothgressi</h2>
+        <p>Un logiciel de représentation graphique (Regressi en mieux).</p>
+        <div class="tags"><span class="tag win">Windows</span><span class="tag linux">Linux</span></div>
+      </div>
+      <div class="app-actions">
+        <button class="btn btn-primary" onclick="location.href='smoothgressi.html'">En savoir plus</button>
+      </div>
     </div>
 
     <div class="app-card">
-        <img src="https://via.placeholder.com/64" alt="Icône WSME" class="app-icon">
-        <div class="app-description">
-            <h2>Windows Start Menu Editor (WSME)</h2>
-            <p>Gérez les raccourcis dans votre menu démmarer Windows facilement avec une interface simple et des outils avancés</p>
-        </div>
-        <div class="app-actions">
-            <button onclick="window.location.href='wsme.html'">En savoir plus</button>
-        </div>
+      <img src="https://via.placeholder.com/64" alt="Icône Text Extract" class="app-icon">
+      <div class="app-description">
+        <h2>Text Extract</h2>
+        <p>Extracteur de texte en local depuis des images.</p>
+        <div class="tags"><span class="tag linux">Linux</span></div>
+      </div>
+      <div class="app-actions">
+        <button class="btn btn-primary" onclick="location.href='textextract.html'">En savoir plus</button>
+      </div>
     </div>
 
     <div class="app-card">
-        <img src="https://via.placeholder.com/64" alt="Icône Application 2" class="app-icon">
-        <div class="app-description">
-            <h2>Gestionnaire MSIX (UWP)</h2>
-            <p>Gérez les paquets UWP installés sur votre système Windows (permet entre autre de supprimer le bloat)</p>
-        </div>
-        <div class="app-actions">
-            <button onclick="window.location.href='msix-mgr.html'">En savoir plus</button>
-        </div>
+      <img src="https://via.placeholder.com/64" alt="Icône NC-Cookbook "" class="app-icon">
+      <div class="app-description">
+        <h2>NC‑Cookbook</h2>
+        <p>Application LibAdwaita pour gérer et afficher les recettes NextCloud Cookbook.</p>
+        <div class="tags"><span class="tag linux">Linux</span></div>
+      </div>
+      <div class="app-actions">
+        <button class="btn btn-primary" onclick="location.href='nccookbook.html'">En savoir plus</button>
+      </div>
     </div>
 
     <div class="app-card">
-        <img src="https://cdn.pixabay.com/photo/2021/10/04/21/06/vertical-6681019_960_720.png" alt="..." class="app-icon">
-        <div class="app-description">
-            <h2>A venir</h2>
-            <p>Encore plus d'applications sont a venir, suivez mon profil sur GitHub pour les dernieres nouvelles sur LuigidaySofts</p>
-        </div>
-        <div class="app-actions">
-            <button onclick="window.location.href='https://github.com/luigiday'">Voir mon profil</button>
-        </div>
+      <img src="https://via.placeholder.com/64" alt="Icône WSME" class="app-icon">
+      <div class="app-description">
+        <h2>Windows Start Menu Editor (WSME)</h2>
+        <p>Gérez facilement les raccourcis dans votre menu démarrer Windows.</p>
+        <div class="tags"><span class="tag win">Windows</span></div>
+      </div>
+      <div class="app-actions">
+        <button class="btn btn-primary" onclick="location.href='wsme.html'">En savoir plus</button>
+      </div>
     </div>
-    <p>🛈 Cette suite contient des logiciel pour Windows et Linux (prochainement) uniquement</p>
-</div>
 
+    <div class="app-card">
+      <img src="https://via.placeholder.com/64" alt="Icône MSIX" class="app-icon">
+      <div class="app-description">
+        <h2>Gestionnaire MSIX (UWP)</h2>
+        <p>Gérez les paquets UWP installés sur votre système (permet entre autre de supprimer le bloat).</p>
+        <div class="tags"><span class="tag win">Windows</span></div>
+      </div>
+      <div class="app-actions">
+        <button class="btn btn-primary" onclick="location.href='msix-mgr.html'">En savoir plus</button>
+      </div>
+    </div>  
+
+    <div class="app-card">
+      <img src="https://cdn.pixabay.com/photo/2021/10/04/21/06/vertical-6681019_960_720.png" alt="Icône A venir" class="app-icon">
+      <div class="app-description">
+        <h2>À venir…</h2>
+        <p>D'autres applications sont en préparation. Suivez mon profil GitHub pour les nouveautés.</p>
+      </div>
+      <div class="app-actions">
+        <button class="btn btn-primary" onclick="location.href='https://luigiday.github.io'">Voir mon profil</button>
+      </div>
+    </div>
+
+    <p style="margin-top:28px; color:var(--muted)">🛈 Cette suite contient des logiciels pour Windows et Linux uniquement.</p>
+  </main>
 </body>
 </html>
