@@ -69,6 +69,55 @@
     .tag.linux{ background:#ff9800; color:#fff }
 
     @media(max-width:768px){ .app-card{ flex-direction:column; text-align:center } .app-actions{ margin-left:0; margin-top:12px } }
+
+    /* === Popup 404 === */
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity var(--transition), visibility var(--transition);
+    }
+    .popup-overlay.active {
+      visibility: visible;
+      opacity: 1;
+    }
+    .popup-card {
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      border:1px solid rgba(255,255,255,.1);
+    }
+    .popup-card h2 {
+      color: var(--error);
+      margin: 0 0 12px;
+    }
+    .popup-card p {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .btn-close {
+      background: var(--error);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .btn-close:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 0 2px rgba(239,83,80,.3), 0 8px 30px rgba(239,83,80,.2);
+    }
   </style>
 </head>
 <body>
@@ -103,7 +152,7 @@
     </div>
 
     <div class="app-card">
-      <img src="https://via.placeholder.com/64" alt="Icône NC-Cookbook "" class="app-icon">
+      <img src="https://via.placeholder.com/64" alt="Icône NC-Cookbook" class="app-icon">
       <div class="app-description">
         <h2>NC‑Cookbook</h2>
         <p>Application LibAdwaita pour gérer et afficher les recettes NextCloud Cookbook.</p>
@@ -151,5 +200,46 @@
 
     <p style="margin-top:28px; color:var(--muted)">🛈 Cette suite contient des logiciels pour Windows et Linux uniquement.</p>
   </main>
+
+  <!-- Popup 404 -->
+  <div class="popup-overlay" id="popup404">
+    <div class="popup-card">
+      <h2>Erreur 404</h2>
+      <p>La page demandée est introuvable.<br>Veuillez vérifier le lien ou revenir à l’accueil.
+      URL demandée : <code id="requested-url"></code>
+      </p>
+      <script>
+          // Affiche le paramètre "link" dans le code ci-dessus
+          (function(){
+            const url = new URL(window.location.href);
+            const link = url.searchParams.get('link');
+            if(link){
+              document.getElementById('requested-url').textContent = link;
+              url.searchParams.delete('link');
+              history.replaceState(null, '', url.pathname + (url.searchParams.toString()?('?'+url.searchParams.toString()):''));
+            } else {
+              document.getElementById('requested-url').textContent = '(non spécifiée)';
+            }
+          })();
+        </script>
+      <button class="btn-close" onclick="closePopup()">Fermer</button>
+    </div>
+  </div>
+
+  <script>
+    // Exemple : afficher le popup si on détecte le paramètre from404 dans l’URL
+    function check404() {
+      const url = new URL(window.location.href);
+      if (url.searchParams.has("from404")) {
+        document.getElementById("popup404").classList.add("active");
+      }
+    }
+    function closePopup() {
+      document.getElementById("popup404").classList.remove("active");
+      // Nettoie l’URL (supprime le ?from404=…)
+      history.replaceState({}, document.title, window.location.pathname);
+    }
+    check404();
+  </script>
 </body>
 </html>
