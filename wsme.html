@@ -62,6 +62,8 @@
     .btn{ cursor:pointer; border:none; border-radius:10px; padding:12px 20px; font-weight:600; transition: all var(--transition); }
     .btn-primary{ background:linear-gradient(180deg, var(--brand), var(--brand-600)); color:#07140d; }
     .btn-primary:hover{ transform:translateY(-1px); box-shadow:var(--ring) }
+    .btn-disabled{ background:#555; color:#aaa; cursor:not-allowed }
+
 
     .section{
       background: var(--card);
@@ -103,7 +105,7 @@
         <div class="tags"><span class="tag win">Windows</span></div>
       </div>
       <div style="margin-left:auto">
-        <button class="btn btn-primary" onclick="window.location.href='https://github.com/luigiday/WSME/releases/latest'">Télécharger</button>
+        <button id="download-btn" class="btn btn-primary">Télécharger</button>
       </div>
     </div>
 
@@ -138,6 +140,21 @@
 
     <a href="index.html" class="back-link">← Retour à la liste des applications</a>
   </main>
+  <script>
+    function detectOS() {
+      const platform = navigator.platform.toLowerCase();
+      const btn = document.getElementById('download-btn');
+      if (platform.includes('win')) {
+        btn.classList.remove('btn-disabled');
+        btn.onclick = () => window.location.href = 'https://github.com/luigiday/WSME/releases/latest';
+      } else {
+        btn.classList.add('btn-disabled');
+        btn.innerText = 'Disponible uniquement pour Windows';
+        btn.onclick = null;
+      }
+    }
+    window.onload = detectOS;
+  </script>
 </body>
 </html>
             
